@@ -149,20 +149,20 @@ namespace satania
 
                         guicontent.text = sharedMesh.GetBlendShapeName(i);
 
-                        float num3 = 0f;
-                        float num4 = 0f;
+                        float min = 0f;
+                        float max = 0f;
                         int blendShapeFrameCount = sharedMesh.GetBlendShapeFrameCount(i);
                         for (int j = 0; j < blendShapeFrameCount; j++)
                         {
                             float blendShapeFrameWeight = sharedMesh.GetBlendShapeFrameWeight(i, j);
-                            num3 = Mathf.Min(blendShapeFrameWeight, num3);
-                            num4 = Mathf.Max(blendShapeFrameWeight, num4);
+                            min = Mathf.Min(blendShapeFrameWeight, min);
+                            max = Mathf.Max(blendShapeFrameWeight, max);
                         }
 
                         if (i < blendshapeWeightsArraySize)
                         {
                             EditorGUI.BeginChangeCheck();
-                            float floatValue = InvokeCustomSlider(guicontent, m_BlendshapeWeights.GetArrayElementAtIndex(i).floatValue, 0.0f, 100.0f, float.MinValue, float.MaxValue, new GUILayoutOption[0]);
+                            float floatValue = InvokeCustomSlider(guicontent, m_BlendshapeWeights.GetArrayElementAtIndex(i).floatValue, min, max, float.MinValue, float.MaxValue, new GUILayoutOption[0]);
 
                             if (EditorGUI.EndChangeCheck())
                             {
